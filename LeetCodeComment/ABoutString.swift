@@ -13,15 +13,15 @@ class ABoutString: NSObject {
 
 }
 
-//1.验证回文串
-/*
- 日了狗这个题目在LeetCode上说我超时了，我怀疑是Swift操作字符串的函数耗时比较长，如果用C++来移动指针的话可能会快过remove字符串中的字符
- 题目总结：
-    1.空字符串不能remove字符
-    2.Swift中的字符对象是Character
-    3.Swift字符串不能按照index遍历访问
-*/
 class Solution_HuiWenChuan {
+    //1.验证回文串
+    /*
+     日了狗这个题目在LeetCode上说我超时了，我怀疑是Swift操作字符串的函数耗时比较长，如果用C++来移动指针的话可能会快过remove字符串中的字符
+     题目总结：
+        1.空字符串不能remove字符
+        2.Swift中的字符对象是Character
+        3.Swift字符串不能按照index遍历访问
+    */
     func isPalindrome(_ s: String) -> Bool {
         //Swift字符串不能按照index遍历访问
         var muteS = s

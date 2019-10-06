@@ -9,78 +9,76 @@
 import Foundation
 
 class Solution {
-    func isPalindrome(_ s: String) -> Bool {
-        
-        //Swift字符串不能按照index遍历访问
-        
-        //处理字符串，只保留数字和字母
-        var muteS = s
-        
-//        for c in s {
-//                if c.isLetter{
-//                    var valide:String = String(c)
-//                    valide = valide.lowercased()
-//                    muteS = muteS + valide
-//                }else if c.isNumber{
-//                    var valide2:String = String(c)
-//                    muteS = muteS + valide2
-//                }
-//        }
-        
-        //空字符串，认为true
-        if(muteS.count == 0){
-            return true;
+    
+    /// 动态规划扔鸡蛋问题的第一种解法
+    /// - Parameter K: 鸡蛋数
+    /// - Parameter N: 楼层数
+    func superEggDrop__func1(_ K: Int, _ N: Int) -> Int {
+            
+        //1.特殊情况，如果蛋个数K少于1个，或者楼层数少于1层，那么最少尝试次数是0次
+        if (K < 1 || N < 1) {
+            return 0;
+        }
+        //2.初始化一个矩阵，用来做备忘录以及输出最后的结果 -- 请注意这里Swift二维矩阵的初始化，使用范型，非常机智
+        //这个矩阵的行代表蛋个数，列代表楼层数
+        var catchMatrix:Array<Array <Int>> = Array();
+        //3.将矩阵的每个元素初始化成最大尝试数，也就是楼层数N，最大尝试数就是最坏情况，每层都要扔一次
+        //(垃圾小燕子，不能for i，还要老子用wile)
+        var i = 0;
+        while (i <= K) {
+            var j = 0;
+            var tmpArr:Array<Int> = Array()
+            while (j <= N){
+                tmpArr.append(j);
+                j = j + 1;
+            }
+            catchMatrix.append(tmpArr);
+            i = i + 1;
         }
         
-        //如果字符串count == 1，认为false
-        if(muteS.count == 1){
-            return true;
+        //初始化完成了，开始逐行计算填表
+        var egg = 1;
+        //先遍历蛋，再遍历楼
+        while(egg <= K){
+            
+            var floor = 1;
+            while (floor <= N){
+                
+                var Min = catchMatrix[egg][floor];
+                //开始遍历层数，现在鸡蛋的个数是egg，需要查看egg个鸡蛋下，不同层数变化需要多少次,求鸡蛋个数不变，不同层数的最大值
+                var Max = 0;
+                var index = 1;
+                while (index <= floor) {
+                    //如果鸡蛋碎了
+                    let temp1 = catchMatrix[egg - 1][index - 1] + 1;
+                    //如果鸡蛋没碎
+                    let temp2 = catchMatrix[egg][floor - index] + 1;
+                    Max = max(temp1, temp2);
+                    
+                    if(Max < Min){
+                        Min = Max;
+                    }
+                    index = index + 1;
+                }
+                catchMatrix[egg][floor] = Min;
+                
+                floor = floor + 1;
+            }
+            
+            egg = egg + 1;
         }
         
-        //注意，这里如果String是空的会Crash
-        var start:Character = muteS.first!
-        var trail:Character = muteS.last!
-        
-        while (muteS.count > 1) {
-
-            start = muteS.first!
-            trail = muteS.last!
-            
-            //如果不是数字或者字母，直接跳过
-            if ((trail.isLetter == false) && (trail.isNumber == false)) {
-                muteS.removeLast();
-                continue;
-            }
-            
-            if ((start.isLetter == false) && (start.isNumber == false)) {
-                muteS.removeFirst()
-                continue;
-            }
-            
-            //全部转换为小写比较
-            if(trail.isLetter){
-                trail = trail.lowercased().first!;
-            }
-            
-            if(start.isLetter){
-                start = start.lowercased().first!;
-            }
-            
-            if trail != start{
-                return false;
-            }
-            
-            muteS.removeFirst();
-            muteS.removeLast();
-        }
-        return true;
+        return catchMatrix[K][N];
     }
 }
 
 func main() {
-    var ss = Solution()
-    var isP = ss.isPalindrome("race a car")
-    print(isP);
+    var solu = Solution();
+    
+    var res = solu.superEggDrop(1, 3);
+    
+    print(String(format: "%@%d", "res = ",res));
+
 }
 
 
