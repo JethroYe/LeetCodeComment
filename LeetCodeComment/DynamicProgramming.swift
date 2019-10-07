@@ -11,6 +11,7 @@ import Cocoa
 
 class DynamicProgramming: NSObject {
     
+    //MARK: 扔鸡蛋问题
     func superEggDrop(_ K: Int, _ N: Int) -> Int {
             
         //1.特殊情况，如果蛋个数K少于1个，或者楼层数少于1层，那么最少尝试次数是0次
@@ -69,6 +70,7 @@ class DynamicProgramming: NSObject {
         return catchMatrix[K][N];
     }
 
+    //MARK: 最大子序列问题
     /// 动态规划：最大子序列问题
     /// - Parameter nums: 输入数组
     func maxSubArray(_ nums: [Int]) -> Int {
@@ -111,4 +113,30 @@ class DynamicProgramming: NSObject {
         return res
     }
 
-}
+    // MARK: - 爬楼梯问题
+    /// 动态规划，爬楼梯问题 https://leetcode-cn.com/problems/climbing-stairs/
+    /// - Parameter n: 楼梯数
+    func climbStairs(_ n: Int) -> Int {
+        
+        var dp = Array<Int>();
+        
+        //初始化dp
+        for j in 0...n {
+            dp.append(0);
+        }
+        
+        for index in 0...n {
+            
+            if index < 3 {
+                
+                dp[index] = index
+                
+            }else{
+                
+                dp[index] = (dp[1] * dp[index - 1]) + ((dp[2] - 1) * dp[index - 2])
+                
+            }
+        }
+        
+        return dp[n];
+    }}
