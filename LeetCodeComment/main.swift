@@ -9,42 +9,60 @@
 import Foundation
 
 class Solution {
-    
-    
-    /// 动态规划，爬楼梯问题 https://leetcode-cn.com/problems/climbing-stairs/
-    /// - Parameter n: 楼梯数
-    func climbStairs(_ n: Int) -> Int {
+    func longestPalindrome(_ s: String) -> String {
         
-        var dp = Array<Int>();
+        var resArr = Array<String>();
         
-        //初始化dp
-        for j in 0...n {
-            dp.append(0);
+        let count:Int = s.count;
+        
+        var dp = Array<Array<Bool>>();
+        
+        for start in 0...count{
+            
+            var tempArr = Array<Bool>();
+            
+            var charSet:CharacterSet = CharacterSet();
+            charSet =
+            
+            for trail in start...count{
+                
+                var isPalindorme = false;
+                
+                var startStr:Character = s[start-1 ... start];
+                var trailStr:Character = s[trail-1 ... trail];
+                if ((dp[start][trail - 1] == true) && (startStr == trailStr)) {
+                    isPalindorme = true;
+                }else{
+                    isPalindorme = false;
+                }
+                tempArr.append(isPalindorme);
+            }
+            
+            dp.append(tempArr);
         }
         
-        for index in 0...n {
-            
-            if index < 3 {
-                
-                dp[index] = index
-                
-            }else{
-                
-                dp[index] = (dp[1] * dp[index - 1]) + ((dp[2] - 1) * dp[index - 2])
-                
+        
+        
+        
+        
+        
+        
+        //遍历结果数组，找长度最长的
+        var res = resArr.first!;
+        for item in resArr {
+            if item.count > res.count {
+                res = item;
             }
         }
         
-        return dp[n];
+        return res;
     }
 }
+
+
 func main() {
     
     var solu = Solution();
-    
-    var res = solu.climbStairs(2);
-    
-    print(res);
 }
 
 
