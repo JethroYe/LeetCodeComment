@@ -25,5 +25,19 @@ void DFS(G){
 
 
 void DFS_Visit(G.u){
+    //首先时间戳+1
+    time = time + 1;
+    //设置时间戳
+    u.d = time;
+    //染色为灰色
+    u.color = grey;
 
+    for each v in G.v{
+        if color == white{
+            v.pi = u
+            DFS_Visit(G.v)
+        }
+    }
+    u.color = black;
+    u.f = time;
 }
