@@ -114,10 +114,10 @@ void QuickSort(int *A,int p,int r){
     NSInteger largest = itemIndex;
  
     // 下面的 largest 只是为了找到最大的
-    if(left < len && [array[left] integerValue] > [array[itemIndex] integerValue]){
+    if(left < len && [array[left] integerValue] > [array[largest] integerValue]){
         largest = left;
     }
-    if (right < len && [array[right] integerValue ] > [array[itemIndex] integerValue]) {
+    if (right < len && [array[right] integerValue ] > [array[largest] integerValue]) {
         largest = right;
     }
     
@@ -133,6 +133,7 @@ void QuickSort(int *A,int p,int r){
 /// @param array 待建堆数组
 /// @param len 数组长度
 + (void)buildMaxHeap:(NSMutableArray *)array AndLength:(NSInteger)len{
+    //floor(len/2) -- 是最后一个非叶子节点
     for(NSInteger index = floor(len/2); index >= 0; index -- ){
         [SortLearn maxHeapify:array AndIndex:index AndLength:len];
     }
@@ -146,8 +147,7 @@ void QuickSort(int *A,int p,int r){
     [SortLearn buildMaxHeap:array AndLength:len];
     for(NSInteger i = len - 1; i > 0; i--){
         [array exchangeObjectAtIndex:0 withObjectAtIndex:i];
-        len -- ;
-        [SortLearn maxHeapify:array AndIndex:i AndLength:len];
+        [SortLearn maxHeapify:array AndIndex:0 AndLength:i];
     }
 }
 
