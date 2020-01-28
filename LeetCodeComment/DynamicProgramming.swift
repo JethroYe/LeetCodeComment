@@ -194,4 +194,32 @@ class DynamicProgramming: NSObject {
          */
     }
     
+    //MARK: - 不同的二叉搜索树
+    
+    /// 动态规划，不同的二叉搜索树 https://leetcode-cn.com/problems/unique-binary-search-trees/
+    /// - Parameter n: n
+    func numTrees(_ n: Int) -> Int {
+        
+        /*
+            这个算法的计算量可以被优化一半，原因是里面有一部分的求和计算重复了
+         */
+        
+        //结果数组，首先简单初始化一下
+        var resArray:Array<Int> = Array();
+        var tmp = 0;
+        for index in 0...n {
+            if (index < 2) {
+                tmp = 1
+            }else{
+                tmp = 0;
+                for jndex in 0...(index-1) {
+                    tmp = tmp + (resArray[jndex]*resArray[(index - jndex - 1)]);
+                }
+            }
+            resArray.append(tmp);
+        }
+        
+        return resArray.last ?? 0;
+    }
+    
 }
