@@ -139,4 +139,59 @@ class DynamicProgramming: NSObject {
         }
         
         return dp[n];
-    }}
+    }
+    
+    //MARK: - 不同路径
+    /// 动态规划，不同路径问题 https://leetcode-cn.com/problems/unique-paths/submissions/
+    /// - Parameters:
+    ///   - m: M*N
+    ///   - n: M*N
+    func uniquePaths(_ m: Int, _ n: Int) -> Int {
+        //DP解法，自底向上 -- 顺着推
+        var res:Array<Array<Int>> = Array();
+
+        //先初始化一下数组 -- swift究竟如何写一个矩阵？
+        for var index in 0...m {
+            var array:Array<Int> = Array();
+            for var jndex in 0...n {
+                array.append(0);
+            }
+            res.append(array);
+        }
+
+        for var index in 0...m {
+            for var jndex in 0...n {
+
+                var tmp = 0;
+
+                if(index == 0 && jndex == 0){
+                    tmp = 1;
+                }else if(index == 0 || jndex == 0){
+                    tmp = 1;
+                }else{
+                    tmp = (res[index - 1][jndex]) + (res[index][jndex - 1]);
+                }
+                res[index][jndex] = tmp;
+            }
+        }
+        return res[m - 1][n - 1];
+        
+        /*这里还有一个超时的简单解法，这里有很多重复计算，加上记录就是DP了
+            if(m <= 0 || n <= 0){
+                return 0;
+            }
+
+            if(m == 1 || n == 1){
+                return 1;
+            }
+
+            if(m == 2 && n == 2){
+                return 2;
+            }
+
+            return (uniquePaths(m-1, n)) + (uniquePaths(m, n-1));
+
+         */
+    }
+    
+}
