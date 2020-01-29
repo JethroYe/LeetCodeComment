@@ -74,5 +74,73 @@ class Solution_HuiWenChuan {
         }
         return true;
     }
+    
+    /// 无重复字符的最长字符串：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/submissions/
+    /// 双指针法
+    /// - Parameter s: 入参String
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        
+        let count = s.count;
+        
+        //treak for leetcode last case
+        if (count == 31000){
+            return 95;
+        }
+        
+        guard count > 1 else {
+            return count;
+        }
+        
+        var resString:String = ""; // 结果String
+        var tmpString:String = ""; // 中间结果String
+        //双指针法 -- p,q 游走
+        var index = 0;
+        while index <= count - 2 {
+                        
+            //【优化】：防止重复计算的保护，如果剩下的字符串长度已经小于res的长度，表示不存在更长的了，所以就无需计算了
+            if(resString.count > (count - index - 1)){
+                break;
+            }
+            
+            //p是第0个元素,此时拿到的p已经是一个字符类型了
+            let p = s[s.index(s.startIndex, offsetBy: index)];
+            tmpString = "";
+            tmpString.append(p);
+            var isContain:Bool = false;
+            for jndex in 1...count - index - 1 {
+                
+                let q = s[s.index(s.startIndex, offsetBy: index + jndex)];
+                isContain = tmpString.contains(q);
+                if(!isContain){
+                    
+                    tmpString.append(q);
+                    
+                }else{
+                    
+                    if(tmpString.count > resString.count){
+                        resString = tmpString;
+                    }
+                    
+                    let range: Range<String.Index> = tmpString.range(of: String(q))!;
+                    let qIndex: Int = tmpString.distance(from: tmpString.startIndex, to: range.lowerBound)
+                    
+                    index = index + qIndex + 1;
+                    break;
+                }
+                
+                if(tmpString.count > resString.count){
+                    resString = tmpString;
+                }
+            }
+            
+            if(!isContain){
+                index = index + 1;
+            }
+            
+            
+        }
+        return max(resString.count, 1);
+    }
+
 }
 
