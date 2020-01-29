@@ -141,6 +141,62 @@ class Solution_HuiWenChuan {
         }
         return max(resString.count, 1);
     }
+    
+    
+    
+    /// 最长公共前缀 -- 小问题：https://leetcode-cn.com/problems/longest-common-prefix/
+    /// - Parameter strs: str
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        
+        //字符串个数
+        let strsCount = strs.count;
+        
+        if(strsCount == 0){
+            return "";
+        }
+        
+        if(strsCount == 1){
+            return strs.first ?? "";
+        }
+        
+        //结果
+        var resStr:String = String();
+        
+        //最短长度
+        var miniLen:Int = (strs.first?.count)!;//强制解包
+        
+        for index in 1...(strsCount - 1) {
+            let miniLenTmp = strs[index].count;
+            miniLen = min(miniLenTmp, miniLen);
+        }
+        
+        if(miniLen == 0){
+            return "";
+        }
+        
+        for jndex in 0...(miniLen-1) {
+            let firstString = strs[0];
+            let firstItem = firstString[firstString.index(firstString.startIndex, offsetBy: jndex)];
+            for kndex in 1...(strsCount - 1){
+                let tmpString:String = strs[kndex];
+                let tmpItem = tmpString[tmpString.index(tmpString.startIndex, offsetBy: jndex)];
+                if(firstItem == tmpItem){
+                    if(kndex == (strsCount-1)){
+                        
+                        if(resStr.count > 0){
+                            resStr.append(tmpItem);
+                        }else if(jndex == 0){
+                            resStr.append(tmpItem);
+                        }
+                    }
+                }else{
+                    break;
+                }
+            }
+        }
+        return resStr;
+    }
+
 
 }
 
