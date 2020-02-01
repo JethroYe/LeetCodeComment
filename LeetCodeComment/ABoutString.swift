@@ -335,5 +335,121 @@ class Solution_HuiWenChuan {
             
             return res;
         }
+    
+    //MARK: - 3数之和 Swift超时了，没有AC
+    /// https://leetcode-cn.com/problems/3sum/submissions/
+    /// - Parameter nums: nums
+    func threeSum(_ nums: [Int]) -> [[Int]] {
+            let count = nums.count;
+            
+            guard count > 2 else {
+                return [];
+            }
+            
+            //结果数组
+            var res:Array<Array<Int>> = Array();
+            
+            //先排序
+            let sortNums = nums.sorted();
+            
+            for index in 0...count - 3{
+                
+                if(sortNums[index] > 0){
+                    break;
+                }
+                
+                var left = index + 1;
+                var right = count - 1;
+                
+                while(left < right){ //这种条件判断在快排和堆排里都有用到呀,为啥就是没想到咧
+                    
+                    let curValue = sortNums[index];
+                    let leftValue = sortNums[sortNums.index(sortNums.startIndex, offsetBy: left)];
+                    let rightValue = sortNums[sortNums.index(sortNums.startIndex, offsetBy: right)];
+                    
+                    if(curValue + leftValue + rightValue > 0){
+                        
+                        right = right - 1;
+                        
+                    } else if (curValue + leftValue + rightValue < 0){
+                        
+                        left = left + 1;
+                        
+                    } else {
+                        
+                        //如果相等
+                        var tmpRes:Array<Int> = Array();
+                        tmpRes.append(curValue);
+                        tmpRes.append(leftValue);
+                        tmpRes.append(rightValue);
+                        
+                        if(!res.contains(tmpRes)){
+                            res.append(tmpRes);
+                        }
+                        
+                        while (left < right) && (left-1 >= 0) && (sortNums[left] == sortNums[left + 1]) {
+                            left = left + 1;
+                        }
+                        
+                        while (left < right) && (right + 1 <= count - 1) && (sortNums[left] == sortNums[right - 1]) {
+                            right = right + 1;
+                        }
+                        
+                        left = left + 1;
+                        right = right - 1;
+
+                    }
+                }
+            
+            }
+            return res;
+        }
+        
+        
+    /**
+         下面是有问题的解法：
+         总结：1. 完全可以用循环实现，循环的退出条件，需要好好理解
+         */
+        
+    //    func checkZero(sortNums:[Int], curIndex:Int, left:inout Int, right:inout Int, res:inout [[Int]]) -> [Int] {
+    //
+    //        let count = sortNums.count;
+    //
+    //        if (left >= right){
+    //            return [];
+    //        }
+    //
+    //        var tmpRes:Array<Int> = Array()
+    //
+    //        let leftValue = sortNums[sortNums.index(sortNums.startIndex, offsetBy: left)];
+    //        let currentValue = sortNums[curIndex];
+    //        let rightValue = sortNums[sortNums.index(sortNums.startIndex, offsetBy: right)];
+    //
+    //        if currentValue + leftValue + rightValue > 0 {
+    //            //如果大了，移动左指针
+    //            left = left + 1;
+    //            return self.checkZero(sortNums: sortNums, curIndex: curIndex, left: &left, right: &right, res: &res);
+    //
+    //        }else if currentValue + leftValue + rightValue < 0 {
+    //            //如果小了，移动右指针
+    //            right = right - 1;
+    //            return self.checkZero(sortNums: sortNums, curIndex: curIndex, left: &left, right: &right,res: &res);
+    //
+    //        }else{
+    //            //如果找到合适的
+    //            tmpRes.append(leftValue);
+    //            tmpRes.append(currentValue);
+    //            tmpRes.append(rightValue);
+    //
+    //            left = left + 1;
+    //            right = right - 1;
+    //
+    //            if tmpRes.count > 0  && (false == res.contains(tmpRes)){
+    //                res.append(tmpRes);
+    //            }
+    //
+    //            return self.checkZero(sortNums: sortNums, curIndex: curIndex, left: &left, right: &right,res: &res);
+    //        }
+    //    }
 }
 
