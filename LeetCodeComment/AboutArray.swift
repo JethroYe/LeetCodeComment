@@ -64,5 +64,76 @@ class AboutArray: NSObject {
         return max(resMax, 0);
     }
 
+    //MARK: - 买卖股票的最佳时机2，使用导数思想
+    //https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/comments/
+    func maxProfit_two(_ prices: [Int]) -> Int {
+        
+        //神奇的求导法
+        let count = prices.count;
+        
+        if count < 2 {
+            return 0;
+        }
+        
+        if count == 2 {
+            return max(0, prices.last! - prices.first!)
+        }
+        
+        var index = 0;
+        var jndex = 0;
+        var kndex = jndex + 1;
+        
+        
+        var buyPoint = 0;
+        var sailPoint = 0;
+        
+        var res = 0;
+        
+        var isBuying:Bool = false;
+        
+        while jndex <= count - 1 {
+            
+            let indexV = prices[index];
+            let jndexV = prices[jndex];
+            let kndexV = prices[kndex];
+            
+            if(indexV >= jndexV && kndexV >= jndexV){
+                //出现低谷点，是买点
+                if(isBuying == false){
+                    buyPoint = jndex;
+                }
+                isBuying = true;
+                
+                index = jndex;
+                jndex = index + 1;
+                kndex = min(index + 2, count - 1);
+                continue;
+            }
+            
+            if(indexV <= jndexV && kndexV <= jndexV && isBuying){
+                //出现波峰点，是卖点
+                sailPoint = jndex;
+                
+                //操作买卖
+                if(sailPoint > buyPoint){
+                    res = res + (prices[sailPoint] - prices[buyPoint]);
+                    isBuying = false;
+                }
+            }
+            
+            
+            index = index + 1;
+            jndex = jndex + 1;
+            kndex = min(kndex + 1, count - 1);
+        }
+        
+        //如果结果是0，表示函数是单调的，需要判断首尾即可
+        if(res == 0){
+            let tmpRes = prices.last! - prices.first!;
+            res = max(res,tmpRes);
+        }
+        
+        return max(res, 0);
+    }
     
 }
