@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8233346123E7068F0050B80B /* AboutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8233346023E7068F0050B80B /* AboutArray.swift */; };
 		828628022341797A005CCF7E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828628012341797A005CCF7E /* main.swift */; };
 		8286280923419A16005CCF7E /* ABoutString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286280823419A16005CCF7E /* ABoutString.swift */; };
 		828CE5472354D1C5004E95AE /* GraphAlg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CE5462354D1C5004E95AE /* GraphAlg.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8233346023E7068F0050B80B /* AboutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutArray.swift; sourceTree = "<group>"; };
 		828627FE2341797A005CCF7E /* LeetCodeComment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCodeComment; sourceTree = BUILT_PRODUCTS_DIR; };
 		828628012341797A005CCF7E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8286280823419A16005CCF7E /* ABoutString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABoutString.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				82BADEC4234773D70070DB85 /* DynamicProgramming.swift */,
 				8286280823419A16005CCF7E /* ABoutString.swift */,
 				828CE5462354D1C5004E95AE /* GraphAlg.swift */,
+				8233346023E7068F0050B80B /* AboutArray.swift */,
 			);
 			path = LeetCodeComment;
 			sourceTree = "<group>";
@@ -129,6 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8233346123E7068F0050B80B /* AboutArray.swift in Sources */,
 				8286280923419A16005CCF7E /* ABoutString.swift in Sources */,
 				82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */,
 				828628022341797A005CCF7E /* main.swift in Sources */,
