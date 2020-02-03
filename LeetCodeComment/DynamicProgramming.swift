@@ -222,4 +222,55 @@ class DynamicProgramming: NSObject {
         return resArray.last ?? 0;
     }
     
+    //MARK: - 最短路径和 https://leetcode-cn.com/problems/minimum-path-sum/
+    class Solution {
+        
+        func minPathSum(_ grid: [[Int]]) -> Int {
+            
+            let m = grid.count;
+            
+            if(m == 0){
+                return 0;
+            }
+            
+            
+            let n = grid[0].count;
+            
+            var resMatrix:Array<Array<Int>> = Array();
+            
+            //先初始化一下
+            for _ in 0 ..< m {
+                var tmpArray:Array<Int> = Array();
+                for _ in 0 ..< n{
+                    tmpArray.append(0);
+                }
+                resMatrix.append(tmpArray);
+            }
+            
+            
+            for index in 0 ..< m {
+                
+                for jndex in 0 ..< n{
+                    
+                    var tmpValue = -1;
+                    
+                    if(index == 0 && jndex == 0){
+                        tmpValue = grid[0][0];
+                    }else if(index == 0){
+                        tmpValue = resMatrix[0][jndex - 1] + grid[index][jndex];
+                    }else if(jndex == 0){
+                        tmpValue = resMatrix[index - 1][jndex] + grid[index][jndex];
+                    }else{
+                        tmpValue = min(resMatrix[index - 1][jndex], resMatrix[index][jndex - 1]) + grid[index][jndex];
+                    }
+                    resMatrix[index][jndex] = tmpValue;
+                }
+                
+            }
+            
+            
+            return resMatrix.last!.last!;
+        }
+    }
+
 }
