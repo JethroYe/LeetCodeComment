@@ -121,7 +121,7 @@ class DynamicProgramming: NSObject {
         var dp = Array<Int>();
         
         //初始化dp
-        for j in 0...n {
+        for _ in 0...n {
             dp.append(0);
         }
         
@@ -151,16 +151,16 @@ class DynamicProgramming: NSObject {
         var res:Array<Array<Int>> = Array();
 
         //先初始化一下数组 -- swift究竟如何写一个矩阵？
-        for var index in 0...m {
+        for _ in 0...m {
             var array:Array<Int> = Array();
-            for var jndex in 0...n {
+            for _ in 0...n {
                 array.append(0);
             }
             res.append(array);
         }
 
-        for var index in 0...m {
-            for var jndex in 0...n {
+        for index in 0...m {
+            for jndex in 0...n {
 
                 var tmp = 0;
 
@@ -213,6 +213,7 @@ class DynamicProgramming: NSObject {
             }else{
                 tmp = 0;
                 for jndex in 0...(index-1) {
+                    //重温；这个状态转移方程之所以可以这么写，关键思路在于：串“123”和串“456”生成的BST的个数，是一样的，所以才能递归
                     tmp = tmp + (resArray[jndex]*resArray[(index - jndex - 1)]);
                 }
             }
