@@ -224,54 +224,103 @@ class DynamicProgramming: NSObject {
     }
     
     //MARK: - 最短路径和 https://leetcode-cn.com/problems/minimum-path-sum/
-    class Solution {
         
-        func minPathSum(_ grid: [[Int]]) -> Int {
-            
-            let m = grid.count;
-            
-            if(m == 0){
-                return 0;
-            }
-            
-            
-            let n = grid[0].count;
-            
-            var resMatrix:Array<Array<Int>> = Array();
-            
-            //先初始化一下
-            for _ in 0 ..< m {
-                var tmpArray:Array<Int> = Array();
-                for _ in 0 ..< n{
-                    tmpArray.append(0);
-                }
-                resMatrix.append(tmpArray);
-            }
-            
-            
-            for index in 0 ..< m {
-                
-                for jndex in 0 ..< n{
-                    
-                    var tmpValue = -1;
-                    
-                    if(index == 0 && jndex == 0){
-                        tmpValue = grid[0][0];
-                    }else if(index == 0){
-                        tmpValue = resMatrix[0][jndex - 1] + grid[index][jndex];
-                    }else if(jndex == 0){
-                        tmpValue = resMatrix[index - 1][jndex] + grid[index][jndex];
-                    }else{
-                        tmpValue = min(resMatrix[index - 1][jndex], resMatrix[index][jndex - 1]) + grid[index][jndex];
-                    }
-                    resMatrix[index][jndex] = tmpValue;
-                }
-                
-            }
-            
-            
-            return resMatrix.last!.last!;
+    func minPathSum(_ grid: [[Int]]) -> Int {
+        
+        let m = grid.count;
+        
+        if(m == 0){
+            return 0;
         }
+        
+        
+        let n = grid[0].count;
+        
+        var resMatrix:Array<Array<Int>> = Array();
+        
+        //先初始化一下
+        for _ in 0 ..< m {
+            var tmpArray:Array<Int> = Array();
+            for _ in 0 ..< n{
+                tmpArray.append(0);
+            }
+            resMatrix.append(tmpArray);
+        }
+        
+        
+        for index in 0 ..< m {
+            
+            for jndex in 0 ..< n{
+                
+                var tmpValue = -1;
+                
+                if(index == 0 && jndex == 0){
+                    tmpValue = grid[0][0];
+                }else if(index == 0){
+                    tmpValue = resMatrix[0][jndex - 1] + grid[index][jndex];
+                }else if(jndex == 0){
+                    tmpValue = resMatrix[index - 1][jndex] + grid[index][jndex];
+                }else{
+                    tmpValue = min(resMatrix[index - 1][jndex], resMatrix[index][jndex - 1]) + grid[index][jndex];
+                }
+                resMatrix[index][jndex] = tmpValue;
+            }
+            
+        }
+           
+        return resMatrix.last!.last!;
+    }
+
+    
+    //MARK: - 三角形最短路径和
+    //https://leetcode-cn.com/problems/triangle/submissions/
+    /**
+     本题总结：算法题目有两个重点：
+        想出算法
+        变成代码
+     对于DP题目，要找对状态转移方程，实际操作dp方程发现可以解决问题后，尝试寻找子问题和总问题之间的递归关系
+     通常会遇到递归+方程两个考点。如果要保存中间结果，通常遇到矩阵，如果矩阵写出来了，题目也就解决了
+     */
+    func minimumTotal(_ triangle: [[Int]]) -> Int {
+        
+        let count:Int = triangle.last?.count ?? 0;
+        
+        guard count != 0 else {
+            return 0;
+        }
+        
+        //首先初始化一个结果数组
+        var dp:Array<Array<Int>> = Array();
+        
+        for _  in 0 ..< count {
+            var tmpArray:Array<Int> = Array();
+            for _ in 0 ..< count {
+                tmpArray.append(0);
+            }
+            dp.append(tmpArray);
+        }
+        
+        for index in 0 ..< count {
+                        
+            for jndex in 0 ... index{
+                
+                var tmpRes = 0;
+                
+                if(index == 0 && jndex == 0){
+                    tmpRes = triangle[index][jndex];
+                }else{
+                    
+                    let tmpIndex = max(0, index - 1);
+                    let tmpJndex = max(0, jndex - 1);
+                    let tmpJndex2 = min(jndex,index - 1);
+                    tmpRes = min(dp[tmpIndex][tmpJndex], dp[tmpIndex][tmpJndex2]) + triangle[index][jndex];
+                }
+                dp[index][jndex] = tmpRes;
+            }
+        }
+        
+        return dp.last?.min()! ?? 0;
+        
     }
 
 }
