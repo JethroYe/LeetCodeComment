@@ -136,4 +136,119 @@ class AboutArray: NSObject {
         return max(res, 0);
     }
     
+    //MARK: - 长度最小的子数组
+    /**
+     BB两句：双指针法是对付array的问题的一个有力工具。这个解法的巧妙之处在于没有明显的声明两个index进行滑动，并且把判断条件放在了内层循环，巧妙的做到了窗口的收缩和展开。
+     left是左边，index是右边。
+     总结点：
+     1.这种题目的特点是：滑窗+求和，可以记住类似的写法
+     2.子序列求和，本题目的思想是：如果left开头的不满足要求，就试试index结尾的。两个维度，可以遍历到所有的子数组
+     */
+    //解法2,双指针法
+    func minSubArrayLen(_ s: Int, _ nums: [Int]) -> Int {
+        
+        let count = nums.count;
+        
+        if count == 0 {
+            return 0;
+        }
+        
+        if count == 1 {
+            
+            if nums.first! >= s {
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        
+        var res = 65532;
+        
+        var sum = 0;
+        
+        var left = 0;
+        //index 和 jndex 双指针, 或者 “滑窗”？
+        //看了题解，着实巧妙，不仅减少了求和的一次循环，而且可以巧妙的实现窗口的伸缩，并且最终答案的存储也很没有使用n的空间，值得学习
+        
+        var isChanged:Bool = false;
+        
+        for index in 0 ... count - 1{
+            
+            sum = sum + nums[index];
+            
+            while(sum >= s){
+                
+                res = min(res, index - left + 1);
+                isChanged = true;
+                sum = sum - nums[left];
+                left = left + 1;
+
+                
+            }
+            
+
+        }
+        
+        if(isChanged){
+            return res;
+        }else{
+            return 0;
+        }
+    }
+    
+    //解法1，暴力法，遍历所有的子数组 -- Sad 这个解法TLE了，O(n^3)
+    func minSubArrayLen_TLE(_ s: Int, _ nums: [Int]) -> Int {
+        
+        //结果
+        var res:Array<Int> = Array();
+        
+        let count = nums.count;
+        
+        if count == 0 {
+            return 0;
+        }
+        
+        if count == 1 {
+            
+            if nums.first! >= s {
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        
+        for index in 0 ... count - 1{
+            
+            for endIndex in index ... count - 1{
+                
+                let tmpSum = self.mySum(nums: nums, startIndex: index, endIndex: endIndex);
+                
+                if(tmpSum >= s){
+                    res.append(endIndex - index + 1);
+                    break;
+                }
+            }
+        }
+        
+        guard res.count > 0 else {
+            return 0;
+        }
+        
+        return max(res.min()!,0);
+    }
+    
+    /// 求和工具函数，给“【长度最短的子数组】题目使用，就是上面的题目”
+    /// - Parameters:
+    ///   - nums: 数组
+    ///   - startIndex: 开始index
+    ///   - endIndex: 结束index
+    func mySum(nums:[Int], startIndex:Int ,endIndex:Int) -> Int{
+        var sum = 0;
+        for index in startIndex ... endIndex {
+            sum = sum + nums[index];
+        }
+        return sum;
+    }
+
+    
 }
