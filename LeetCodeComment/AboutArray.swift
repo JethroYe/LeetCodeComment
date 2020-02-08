@@ -250,5 +250,104 @@ class AboutArray: NSObject {
         return sum;
     }
 
+    //MARK: - TOP K 问题：两个解法，首先是排序法，快排AC，堆排TLE
+    //https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
+    func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
+        
+        return self.solutionA_sort(nums, k);
+    }
+    
+    //方法1，排序法(快排AC，堆排TLE了)
+    func solutionA_sort(_ nums: [Int], _ k: Int) -> Int {
+        let count = nums.count;
+        
+        if count == 0 {
+            return 0;
+        }
+        
+        if count == 1 {
+            return nums.first!;
+        }
+        
+        var sortNums = nums;
+        self.qSort(&sortNums, 0, count - 1);
+        print("排序后");
+        print(sortNums);
+        
+        return sortNums[k-1];
+    }
+    
+    /* 借机复习一下两个排序算法吧... */
+    
+    //堆排
+    func heapSort(_ nums: inout [Int], count:Int) -> [Int]{
+        
+        var sortNums = nums;
+        let count = nums.count;
+        
+        self.buildHeap(&sortNums, count: count);
+        //反向遍历
+        for index in (1...count - 1).reversed() {
+            sortNums.swapAt(0, index);
+            self.buildHeap(&sortNums, count: index);
+        }
+        return sortNums;
+        
+    }
+    
+    func buildHeap(_ nums: inout [Int], count:Int){
+        //知识点：用数组表示的堆，最后一个非叶子结点是floor(count/2)
+        let tmp:Int = Int(floor(Double(count) / 2));
+        for index in (0 ... tmp).reversed() {
+            self.heapify(&nums, count: count, index: index);
+        }
+    }
+    
+    func heapify(_ nums: inout [Int], count:Int, index:Int) {
+        let left = index * 2 + 1;
+        let right = index * 2 + 2;
+        
+        var largest = index;
+        
+        if(left < count && nums[left] < nums[largest]) {
+            largest = left;
+        }
+        
+        if(right < count && nums[right] < nums[largest]) {
+            largest = right;
+        }
+        
+        if(largest != index){
+            nums.swapAt(index, largest);
+            self.heapify(&nums, count: count, index: largest);
+        }
+    }
+    
+    //快排
+    func qSort(_ nums: inout [Int], _ startIndex:Int, _ endIndex: Int){
+        
+        if startIndex < endIndex {
+            let q = partition(&nums, startIndex, endIndex);
+            self.qSort(&nums, startIndex, q - 1);
+            self.qSort(&nums, q+1, endIndex);
+        }
+        
+    }
+    
+    func partition(_ nums: inout [Int], _ startIndex:Int, _ endIndex:Int) -> Int {
+        
+        let X = nums[endIndex];
+        var iIndex = startIndex - 1;
+        
+        for jndex in startIndex...endIndex{
+            if nums[jndex] > X {
+                iIndex = iIndex + 1;
+                nums.swapAt(iIndex, jndex);
+            }
+        }
+        nums.swapAt(iIndex + 1, endIndex);
+        
+        return iIndex + 1;
+    }
     
 }
