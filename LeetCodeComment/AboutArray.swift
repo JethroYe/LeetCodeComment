@@ -252,12 +252,56 @@ class AboutArray: NSObject {
 
     //MARK: - TOP K 问题：两个解法，首先是排序法，快排AC，堆排TLE
     //https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
+    
+    
+    //MARK: 方法2： 快排思想，最终解法（增加随机性导致耗时减少了9倍，是时候需要复习一下随机快排了）
     func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
         
-        return self.solutionA_sort(nums, k);
+        return self.findKthLargest_partition(nums, k - 1, 0, nums.count - 1);
+        
     }
     
-    //方法1，排序法(快排AC，堆排TLE了)
+    func findKthLargest_partition(_ nums: [Int], _ k: Int, _ start: Int, _ end:Int) -> Int {
+        
+        //递归的代码没有写对
+        if start < end {
+            
+            var tmpNums = nums;
+            let p = self.partition(nums: &tmpNums, startIndex: start, endIndex: end);
+            
+            if p == k {
+                return tmpNums[k];
+            }else if p < k {
+                return self.findKthLargest_partition(tmpNums, k, p + 1, end);
+            }else {
+                return self.findKthLargest_partition(tmpNums, k, start, p - 1);
+            }
+        }else{
+            return nums[start];
+        }
+    }
+    
+    
+    func partition(nums: inout [Int], startIndex:Int, endIndex:Int) -> Int {
+        
+        //选择数组的最后一个元素作为基准
+        let tmpIndex = Int.random(in: startIndex...endIndex);
+        nums.swapAt(endIndex, tmpIndex);
+        
+        let X = nums[endIndex];
+        var index = startIndex - 1;
+        for jndex in startIndex ... endIndex {
+            if(nums[jndex] > X){
+                index = index + 1;
+                nums.swapAt(index, jndex);
+            }
+        }
+        nums.swapAt(index + 1, endIndex);
+        
+        return index + 1;
+    }
+
+    //MARK: 方法1：排序法(快排AC，堆排TLE了)
     func solutionA_sort(_ nums: [Int], _ k: Int) -> Int {
         let count = nums.count;
         
@@ -279,7 +323,7 @@ class AboutArray: NSObject {
     
     /* 借机复习一下两个排序算法吧... */
     
-    //堆排
+    //MARK: 堆排
     func heapSort(_ nums: inout [Int], count:Int) -> [Int]{
         
         var sortNums = nums;
@@ -323,7 +367,7 @@ class AboutArray: NSObject {
         }
     }
     
-    //快排
+    //MARK: 快排
     func qSort(_ nums: inout [Int], _ startIndex:Int, _ endIndex: Int){
         
         if startIndex < endIndex {
