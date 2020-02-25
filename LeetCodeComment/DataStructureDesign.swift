@@ -68,8 +68,6 @@ class DataStructureDesign: NSObject {
         * Dictionary 存储数据，同时<Key, value>用双向链表保存，以维护先后顺序。
         * 双向链表非常有趣，值得再看看类似题目
      */
-
-    
     class LRUCache {
 
         ///ListNode -- 辅助存储
@@ -171,4 +169,71 @@ class DataStructureDesign: NSObject {
         }
     }
 
+    
+    //MARK: - 【从尾到头打印链表】 https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
+    /**
+        * 自己实现一个简单的 栈
+        * 入+出，两次遍历，简单题
+     */
+    public class ListNode {
+    public var val: Int
+    public var next: ListNode?
+    public init(_ val: Int) {
+        self.val = val
+        self.next = nil
+        }
+    }
+    
+    class Stack {
+        
+        //内部存储
+        public var innerArr:Array<Int>;
+        init() {
+            self.innerArr = Array();
+        }
+        
+        func push(item:Int) {
+            self.innerArr.insert(item, at: 0);
+        }
+        
+        func pop() -> Int {
+            let item:Int = self.innerArr.first!;
+            self.innerArr.remove(at: 0);
+            return item;
+        }
+        
+        func stackSize() -> Int {
+            return self.innerArr.count;
+        }
+    }
+    
+    
+    
+    func reversePrint(_ head: ListNode?) -> [Int] {
+
+        if head == nil {
+            return [];
+        }
+        
+        //堆栈法
+        var resArray:Array<Int> = Array();
+        
+        var cur = head;
+        
+        var stack:Stack = Stack();
+        
+        while (cur != nil) {
+            stack.push(item: cur!.val);
+            cur = cur!.next;
+        }
+        
+        for _ in 0 ..< stack.stackSize(){
+            let item = stack.pop();
+            resArray.append(item);
+        }
+        
+        return resArray;
+    }
+    
+    
 }
