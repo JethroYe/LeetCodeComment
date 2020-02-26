@@ -12,6 +12,7 @@
 		8286280923419A16005CCF7E /* ABoutString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286280823419A16005CCF7E /* ABoutString.swift */; };
 		828CE5472354D1C5004E95AE /* GraphAlg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CE5462354D1C5004E95AE /* GraphAlg.swift */; };
 		82A0BE8423F99E4900A56B6F /* DataStructureDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A0BE8323F99E4900A56B6F /* DataStructureDesign.swift */; };
+		82B83EE92406D7B000C707F0 /* BinaryTreeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */; };
 		82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BADEC4234773D70070DB85 /* DynamicProgramming.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		8286280823419A16005CCF7E /* ABoutString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABoutString.swift; sourceTree = "<group>"; };
 		828CE5462354D1C5004E95AE /* GraphAlg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAlg.swift; sourceTree = "<group>"; };
 		82A0BE8323F99E4900A56B6F /* DataStructureDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructureDesign.swift; sourceTree = "<group>"; };
+		82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeBase.swift; sourceTree = "<group>"; };
 		82BADEC4234773D70070DB85 /* DynamicProgramming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicProgramming.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 				828CE5462354D1C5004E95AE /* GraphAlg.swift */,
 				8233346023E7068F0050B80B /* AboutArray.swift */,
 				82A0BE8323F99E4900A56B6F /* DataStructureDesign.swift */,
+				82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */,
 			);
 			path = LeetCodeComment;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			files = (
 				8233346123E7068F0050B80B /* AboutArray.swift in Sources */,
 				8286280923419A16005CCF7E /* ABoutString.swift in Sources */,
+				82B83EE92406D7B000C707F0 /* BinaryTreeBase.swift in Sources */,
 				82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */,
 				82A0BE8423F99E4900A56B6F /* DataStructureDesign.swift in Sources */,
 				828628022341797A005CCF7E /* main.swift in Sources */,
