@@ -322,5 +322,29 @@ class DynamicProgramming: NSObject {
         return dp.last?.min()! ?? 0;
         
     }
-
+    
+    //MARK: - 斐波那契数列，DP解法 -- 快速矩阵幂太骚了。。。
+    //https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/
+    func fib(_ n: Int) -> Int {
+        
+        if n == 0 {
+            return 0
+        }
+        
+        if n == 1 {
+            return 1
+        }
+        
+        var s:Array<Int> = Array()
+        
+        s.append(0);
+        s.append(1);
+        
+        for idx in 2...n{
+            let item = (s[idx - 1] + s[idx - 2])%1000000007;
+            s.append(item)
+        }
+        
+        return s.last!
+    }
 }
