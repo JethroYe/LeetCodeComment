@@ -347,4 +347,25 @@ class DynamicProgramming: NSObject {
         
         return s.last!
     }
+    
+    //MARK: - 青蛙跳台阶问题，DP解法 -- 快速矩阵幂太骚了。。。
+    //https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/
+    func numWays(_ n: Int) -> Int {
+        
+        var dp:Array<Int> = Array();
+        
+        for idx in 0...n {
+            
+            if idx == 0{
+                dp.append(1);
+            }else if idx <= 2 {
+                dp.append(idx)
+            }else{
+                let item = (dp[idx - 2] + dp [idx - 1])%1000000007
+                dp.append(item);
+            }
+        }
+        return dp[n];
+    }
+
 }
