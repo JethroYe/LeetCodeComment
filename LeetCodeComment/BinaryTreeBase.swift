@@ -108,3 +108,39 @@ class Solution1 {
         return rootNode;
     }
 }
+
+//MARK: - 【二叉树镜像】https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/
+/**
+ * 关于二叉树题目的思考：
+ * 1. 大部分都是递归，而且是左右递归
+ * 2. 分析针对每个节点的操作，寻找共性，共性就是被递归的点
+ * 3. 寻找出口
+ * 4. 递归需要一个blink，在脑子里先把递归流程走通再写代码
+ 
+ */
+class Solution2 {
+    
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.left = nil
+            self.right = nil
+        }
+    }
+    
+    func mirrorTree(_ root: TreeNode?) -> TreeNode? {
+        if root == nil {
+            return root;
+        }
+        
+        let left = mirrorTree(root?.left)
+        let right = mirrorTree(root?.right)
+        root?.left = right;
+        root?.right = left;
+        return root;
+    }
+    
+}
