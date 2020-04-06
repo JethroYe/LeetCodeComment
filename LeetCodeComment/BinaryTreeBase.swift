@@ -143,4 +143,49 @@ class Solution2 {
         return root;
     }
     
+    
+    //MARK: - 【层序遍历二叉树】https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/submissions/
+    /**
+     * 本题目的一些思考：
+     * 1. 不要死板，二叉树题目不一定全都是递归的！
+     * 2. 学习Swift let解包和if解包，两种解法
+     */
+    func levelOrder(_ root: TreeNode?) -> [Int] {
+        
+        var arr:Array<TreeNode> = Array()
+        var resArr:Array<Int> = Array();
+        
+        //guard let 解包
+        guard let unWrapRoot = root  else {
+            return resArr;
+        }
+        
+        //根节点如队
+        arr.append(unWrapRoot);
+        while arr.count > 0 {
+            
+            let firstNode = arr.first
+            
+            //if let 解包
+            if let unWrapValue = firstNode?.val {
+                //将结果保存
+                resArr.append(unWrapValue)
+            }
+            
+            //弹出第一个节点
+            arr.removeFirst()
+            
+            //如果first有左右儿子，塞入队列
+            if let unWrapLeft = firstNode?.left {
+                arr.append(unWrapLeft)
+            }
+            if let unWrapRight = firstNode?.right {
+                arr.append(unWrapRight)
+            }
+        }
+        
+        return resArr
+    }
+
+    
 }
