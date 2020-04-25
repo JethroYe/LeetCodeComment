@@ -108,3 +108,84 @@ class Solution1 {
         return rootNode;
     }
 }
+
+//MARK: - 【二叉树镜像】https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/
+/**
+ * 关于二叉树题目的思考：
+ * 1. 大部分都是递归，而且是左右递归
+ * 2. 分析针对每个节点的操作，寻找共性，共性就是被递归的点
+ * 3. 寻找出口
+ * 4. 递归需要一个blink，在脑子里先把递归流程走通再写代码
+ 
+ */
+class Solution2 {
+    
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.left = nil
+            self.right = nil
+        }
+    }
+    
+    func mirrorTree(_ root: TreeNode?) -> TreeNode? {
+        if root == nil {
+            return root;
+        }
+        
+        let left = mirrorTree(root?.left)
+        let right = mirrorTree(root?.right)
+        root?.left = right;
+        root?.right = left;
+        return root;
+    }
+    
+    
+    //MARK: - 【层序遍历二叉树】https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/submissions/
+    /**
+     * 本题目的一些思考：
+     * 1. 不要死板，二叉树题目不一定全都是递归的！
+     * 2. 学习Swift let解包和if解包，两种解法
+     */
+    func levelOrder(_ root: TreeNode?) -> [Int] {
+        
+        var arr:Array<TreeNode> = Array()
+        var resArr:Array<Int> = Array();
+        
+        //guard let 解包
+        guard let unWrapRoot = root  else {
+            return resArr;
+        }
+        
+        //根节点如队
+        arr.append(unWrapRoot);
+        while arr.count > 0 {
+            
+            let firstNode = arr.first
+            
+            //if let 解包
+            if let unWrapValue = firstNode?.val {
+                //将结果保存
+                resArr.append(unWrapValue)
+            }
+            
+            //弹出第一个节点
+            arr.removeFirst()
+            
+            //如果first有左右儿子，塞入队列
+            if let unWrapLeft = firstNode?.left {
+                arr.append(unWrapLeft)
+            }
+            if let unWrapRight = firstNode?.right {
+                arr.append(unWrapRight)
+            }
+        }
+        
+        return resArr
+    }
+
+    
+}
