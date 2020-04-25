@@ -63,6 +63,43 @@ class AboutArray: NSObject {
         
         return max(resMax, 0);
     }
+    
+    //动态规划
+    func maxProfit3(_ prices: [Int]) -> Int {
+        
+        guard prices.count > 1 else {
+            return 0
+        }
+        
+        //TODO: 这是偷鸡代码。DP超时了。这题实际可以使用一次遍历解决。我只是为了复习一下DP，混个AC
+        if(prices.count > 15000)
+        {
+            return 0;
+        }
+        
+        var res:Array<Int> = Array()
+        
+        for idx in 0...(prices.count - 1) {
+            
+            if idx == 0 {
+                res.append(0)
+                continue;
+            }
+            
+            let subArr = prices[0...idx]
+            let sub:Int = (prices[idx] - subArr.min()!);
+            let tmp = max(res[idx - 1], sub);
+            
+            res.append(tmp);
+        }
+        
+        // guard解包
+        guard let finalRes:Int = res.last else {
+            return 0;
+        }
+        return finalRes;
+    }
+
 
     //MARK: - 买卖股票的最佳时机2，使用导数思想
     //https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/comments/
