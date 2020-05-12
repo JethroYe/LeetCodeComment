@@ -187,5 +187,58 @@ class Solution2 {
         return resArr
     }
 
+    //MARK: - 二叉树右视图
+    //https://leetcode-cn.com/problems/binary-tree-right-side-view/submissions/
+    
+    /// BFS 广度优先解法
+    /// - Parameter root: 根节点
+    /// BB 2句：通过层序遍历的驱动方式，用另一个辅助数组记录层数。这个思路很棒。
+    /// 同时，利用字典的去重特性，完美保存了每一层最后一个节点，这个思路也很棒
+    func rightSideViewForBFS(_ root: TreeNode?) -> [Int] {
+        
+        guard let root:TreeNode = root else {
+            return [];
+        }
+        
+        //深度队列 -- 辅助队列记录深度，和实际Queue同出同进
+        var depthQueue:Array<Int> = Array();
+        //队列
+        var queue:Array<TreeNode> = Array();
+        //结果dic，层数为key，节点值为value 利用NSDictionary去重的原理
+        var resDic:Dictionary<Int,TreeNode> = Dictionary();
+        
+        //初始化，准备开始遍历
+        queue.append(root);
+        depthQueue.append(0);
+        
+        
+        while queue.count > 0 {
+            
+            let node:TreeNode = queue.removeFirst();
+            let depth:Int = depthQueue.removeFirst();
+            
+            resDic[depth] = node;
+            print("node.val = ", +node.val);
+            print("depth = ", +depth);
+            if (node.left != nil) {
+                queue.append(node.left!);
+                depthQueue.append(depth + 1);
+            }
+            
+            if (node.right != nil) {
+                queue.append(node.right!);
+                depthQueue.append(depth + 1);
+            }
+        }
+        
+        let maxDepth = resDic.count;
+        var finalRes:Array<Int> = Array();
+        
+        for idx in 0..<maxDepth {
+            finalRes.append(resDic[idx]!.val);
+        }
+        
+        return finalRes;
+    }
     
 }
