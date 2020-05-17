@@ -10,6 +10,47 @@ import Cocoa
 
 class AboutArray: NSObject {
 
+    //MARK: - 连续的子数组和
+    //https://leetcode-cn.com/problems/continuous-subarray-sum/
+    /// 连续的子数组和
+    /// - Parameters:
+    ///   - nums: 数组
+    ///   - k: k
+    func checkSubarraySum(_ nums: [Int], _ k: Int) -> Bool {
+        //异常条件判断
+        let count = nums.count
+        if(k == 0) {
+            var zeroCount:Int = 0;
+            for i in 0..<count {
+                if nums[i] == 0 {
+                    zeroCount = zeroCount + 1
+                }else{
+                    zeroCount = max(zeroCount - 1, 0)
+                }
+                if zeroCount >= 2{
+                    return true;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            //双循环
+            for idx in 0..<count {
+                var sum:Int = nums[idx]
+                for jndex in (idx+1)..<count{
+                    sum = sum + nums[jndex]
+                    if(sum%k == 0){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
+    
+    
     //MARK: - 买卖股票的最佳时机, 两种解法，暴力法和一次遍历法
     //https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/submissions/
     //双指针，一次遍历，原则就是找到当前最小值的之后的最大值
