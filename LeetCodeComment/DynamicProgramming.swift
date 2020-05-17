@@ -11,6 +11,21 @@ import Cocoa
 
 class DynamicProgramming: NSObject {
     
+    //MARK: 三步问题
+    //https://leetcode-cn.com/problems/three-steps-problem-lcci/
+    func waysToStep(_ n: Int) -> Int {
+        var dp:Array<Int> = Array(arrayLiteral: 0,1,2,4);
+        if(n < 4){
+            return (dp[n]%1000000007)
+        }
+        for idx in 4...n {
+            let res:Int = dp[idx - 1] + dp[idx - 2] + dp[idx - 3];
+            dp.append(res%1000000007);
+        }
+        return dp[n]
+    }
+
+    
     //MARK: 扔鸡蛋问题
     func superEggDrop(_ K: Int, _ N: Int) -> Int {
             
