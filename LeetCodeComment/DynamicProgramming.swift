@@ -11,6 +11,48 @@ import Cocoa
 
 class DynamicProgramming: NSObject {
     
+    //MARK: 面试题，硬币
+    //https://leetcode-cn.com/problems/coin-lcci/
+    /// 完全背包问题，理解的还不太深刻，需要花时间再温习一下
+    /// - Parameter n: n
+    func waysToChange(_ n: Int) -> Int {
+        let coins:Array = [1,5,10,25];
+        //初始化存储数组
+        var dp:Array<Array<Int>> = Array()
+        for _ in 0..<coins.count {
+            var dpItem:Array<Int> = Array()
+            for idx in 0...n {
+                if idx == 0{
+                    dpItem.append(1)
+                }else{
+                    dpItem.append(0)
+                }
+            }
+            dp.append(dpItem)
+        }
+        //外层循环遍历硬币种类
+        for idx in 0..<coins.count {
+            
+            //内层循环遍历n
+            for jdx in 1...n {
+                
+                var lastIdx = max(idx - 1, 0)
+                
+                if jdx - coins[idx] < 0 {
+                    //当前的coin不能放入啦，再放入就超过了
+                    dp[idx][jdx] = dp[lastIdx][jdx] % 1000000007
+                }else{
+                    dp[idx][jdx] = (dp[lastIdx][jdx] + dp[idx][jdx - coins[idx]]) % 1000000007
+                }
+            }
+        
+        }
+        
+        return dp[3][n];
+    }
+
+    
+    
     //MARK: 三步问题
     //https://leetcode-cn.com/problems/three-steps-problem-lcci/
     func waysToStep(_ n: Int) -> Int {
