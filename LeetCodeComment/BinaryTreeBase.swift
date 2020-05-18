@@ -131,6 +131,20 @@ class Solution2 {
         }
     }
     
+    //MARK: - 【求二叉树深度】
+    //https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/submissions/
+    func maxDepth(_ root: TreeNode?) -> Int {
+        //递归出口
+        if root == nil {
+            return 0
+        }
+        let depth = max(maxDepth(root!.left), maxDepth(root!.right)) + 1;
+        return depth;
+        
+    }
+    
+    
+    //MARK: - 【反转二叉树】
     func mirrorTree(_ root: TreeNode?) -> TreeNode? {
         if root == nil {
             return root;
