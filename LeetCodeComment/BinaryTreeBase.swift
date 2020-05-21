@@ -131,6 +131,60 @@ class Solution2 {
         }
     }
     
+    //MARK: - 【二叉树z序遍历】
+    //解题重点：使用临时变量记录Queue的大小，从而得到每层有多少节点
+    func levelOrder(_ root: TreeNode?) -> [[Int]] {
+        
+        guard let root = root else {
+            return [];
+        }
+        
+        //双端队列法
+        var res:Array<Array<Int>> = Array()
+        
+        var queue:Array<TreeNode> = Array()
+        queue.append(root)
+        
+        
+        //层序遍历
+        while queue.count > 0 {
+            
+            var curLevelRes:Array<Int> = Array()
+            
+            let curLevelCount = queue.count
+            
+            //这里利用curLevelCount来记录层序信息真的很骚
+            for _ in 0..<curLevelCount{
+                
+                let node = queue.removeFirst()
+                
+                if res.count % 2 == 0 {
+                    //队头插入
+                    curLevelRes.append(node.val)
+                }else{
+                    //队尾插入
+                    curLevelRes.insert(node.val, at: 0)
+                }
+                
+                if node.left != nil {
+                    queue.append(node.left!)
+                }
+                
+                if node.right != nil {
+                    queue.append(node.right!);
+                }
+            }
+            res.append(curLevelRes)
+            curLevelRes.removeAll()
+            
+        }
+        
+        
+        return res
+        
+    }
+    
+    
     //MARK: - 【求二叉树深度】
     //https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/submissions/
     func maxDepth(_ root: TreeNode?) -> Int {
