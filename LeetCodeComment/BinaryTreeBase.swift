@@ -8,6 +8,54 @@
 //  基本二叉树题目
 import Foundation
 
+/// 二叉树中和为某一值的路径
+//https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/submissions/
+class SolutionOfBinaryTreeSum {
+    
+    public class TreeNode {
+         public var val: Int
+         public var left: TreeNode?
+         public var right: TreeNode?
+         public init(_ val: Int) {
+             self.val = val
+             self.left = nil
+             self.right = nil
+         }
+     }
+    
+    //本题目重点在于 -- 记录路径
+    var resArr:Array<Array<Int>> = Array()
+    var path:Array<Int> = Array()
+    
+    func pathSum(_ root: TreeNode?, _ sum: Int) -> [[Int]] {
+        innerPathSum(root, sum);
+        return resArr;
+    }
+    
+    
+    func innerPathSum(_ root: TreeNode?, _ sum:Int){
+        
+        guard let realRoot = root else {
+            return
+        }
+        
+        path.append(realRoot.val);
+        let innerSum = sum - realRoot.val;
+        
+        if innerSum == 0 && realRoot.left == nil && realRoot.right == nil {
+            path.append(realRoot.val);
+            resArr.append(path);
+        }
+        
+        innerPathSum(realRoot.left, innerSum);
+        innerPathSum(realRoot.right, innerSum);
+        
+        path.removeLast();
+    }
+    
+}
+
+
 //MARK: - 【重建二叉树】https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/
 /**
     * 递归解法
