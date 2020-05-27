@@ -43,7 +43,6 @@ class SolutionOfBinaryTreeSum {
         let innerSum = sum - realRoot.val;
         
         if innerSum == 0 && realRoot.left == nil && realRoot.right == nil {
-            path.append(realRoot.val);
             resArr.append(path);
         }
         
