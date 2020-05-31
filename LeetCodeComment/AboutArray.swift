@@ -9,6 +9,72 @@
 import Cocoa
 
 class AboutArray: NSObject {
+    
+    //MARK: - 和可被 K 整除的子数组 https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/
+    //1.同余数解决法
+    func subarraysDivByK(_ A: [Int], _ K: Int) -> Int {
+        
+        guard K != 0 else {
+            return 0;
+        }
+        
+        guard A.count != 0 else {
+            return 0;
+        }
+        
+        //前缀和字典
+        var tmpDic:Dictionary<Int, Int> = Dictionary();
+        tmpDic = [0:1] //初始化，如果mod 是0,
+        
+        var res = 0;
+        
+        var sum:Int = 0
+        for idx in 0..<A.count{
+            sum = sum + A[idx];
+            
+            let modForIdx:Int = (sum % K + K) % K;
+            if (tmpDic[modForIdx] != nil) {
+                
+                //如果已经有了，就表示当前有了子序列
+                let tmpRes:Int = tmpDic[modForIdx]!;
+                res = res + tmpRes;
+            }else{
+                tmpDic.updateValue(0, forKey: modForIdx)
+            }
+            
+            var tmpRes:Int = tmpDic[modForIdx]!;
+            tmpRes = tmpRes + 1;
+            tmpDic.updateValue(tmpRes, forKey: modForIdx)
+            
+        }
+        
+        
+       return res
+    }
+    
+    //2.暴力解决法，TLE了
+    func subarraysDivByK_origin(_ A: [Int], _ K: Int) -> Int {
+        
+        var resArr:Array<Array<Int>> = Array();
+        
+        for index in 0..<A.count {
+            
+            var sum = 0
+            for jndex in (index)..<A.count{
+                
+                sum = sum + A[jndex];
+                
+                if(sum % K == 0){
+                    resArr.append(Array(A[index...jndex]));
+                }
+                
+            }
+            
+        }
+        print(resArr);
+        return resArr.count;
+    }
+    
 
     //MARK: - 连续的子数组和
     //https://leetcode-cn.com/problems/continuous-subarray-sum/
