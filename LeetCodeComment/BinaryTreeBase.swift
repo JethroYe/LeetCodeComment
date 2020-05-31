@@ -258,6 +258,38 @@ class Solution2 {
         return root;
     }
     
+    //MARK: - 【检查二叉树是否是镜像的】https://leetcode-cn.com/problems/symmetric-tree/submissions/
+    //递归实现
+    func isSymmetric(_ root: TreeNode?) -> Bool {
+        
+        guard let root = root else {
+            //root 节点是nil，true
+            return true;
+        }
+        
+        //如果一个树的左子树和右子树一致，表示是对称了
+        //使用双指针法判断
+        return check(pNode: root, qNode: root)
+    }
+    
+    func check(pNode:TreeNode?, qNode:TreeNode?) -> Bool {
+            
+        //左右都空，true
+        if pNode == nil && qNode == nil {
+            return true
+        }
+        //一个空，false
+        if pNode == nil || qNode == nil {
+            return false
+        }
+        
+        //后面可以安全的强制解包了
+        let isTrue = (pNode!.val == qNode!.val) && check(pNode: pNode!.left, qNode: qNode!.right) && check(pNode: pNode!.right, qNode: qNode!.left)
+        return isTrue
+        
+    }
+
+    
     
     //MARK: - 【层序遍历二叉树】https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/submissions/
     /**
