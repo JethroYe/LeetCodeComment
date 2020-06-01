@@ -8,6 +8,69 @@
 //  基本二叉树题目
 import Foundation
 
+//MARK: - 二叉树的子结构 https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/submissions/
+class isSubStructureSolution {
+    
+    public class TreeNode {
+          public var val: Int
+          public var left: TreeNode?
+          public var right: TreeNode?
+          public init(_ val: Int) {
+              self.val = val
+              self.left = nil
+              self.right = nil
+          }
+      }
+
+    
+    func isSubStructure(_ A: TreeNode?, _ B: TreeNode?) -> Bool {
+        
+        if (A == nil || B == nil)
+        {
+            return false;
+        }
+        
+        //首先，判断A，B的根节点，行就return
+        if (recur(A: A, B: B))
+        {
+            return true;
+        }
+        
+        //如果上面不行，那就递归的检查A.left 和 B
+        if(isSubStructure(A!.left, B))
+        {
+            return true
+        }
+        
+        //如果上面还不行，就递归检查A.right 和 B
+        if(isSubStructure(A!.right, B))
+        {
+            return true;
+        }
+        
+        //如果都不行，只能return false
+        return false;
+    }
+    
+    func recur(A: TreeNode?, B: TreeNode?) -> Bool {
+        //如果B是nil，一定是A的子结构，返回true
+        if B == nil {
+            return true
+        }
+        //如果A是nil，B一定不是A的子结构
+        if A == nil {
+            return false
+        }
+        //如果A,B 根节点值都不一样，那么就无需比较了，直接返回即可
+        if A!.val != B!.val {
+            return false
+        }
+        //排除上面所有的情况，就需要递归对比了
+        return recur(A: A?.left, B: B?.left) && recur(A: A?.right, B: B?.right);
+    }
+    
+}
+
 /// 二叉树中和为某一值的路径
 //https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/submissions/
 class SolutionOfBinaryTreeSum {
