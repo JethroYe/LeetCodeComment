@@ -14,6 +14,8 @@
 		82A0BE8423F99E4900A56B6F /* DataStructureDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A0BE8323F99E4900A56B6F /* DataStructureDesign.swift */; };
 		82B83EE92406D7B000C707F0 /* BinaryTreeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */; };
 		82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BADEC4234773D70070DB85 /* DynamicProgramming.swift */; };
+		82DF39F42492954900C621EC /* DFSClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DF39F32492954900C621EC /* DFSClass.swift */; };
+		82DF39F62492956A00C621EC /* MonotonicStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DF39F52492956A00C621EC /* MonotonicStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,8 @@
 		82A0BE8323F99E4900A56B6F /* DataStructureDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructureDesign.swift; sourceTree = "<group>"; };
 		82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeBase.swift; sourceTree = "<group>"; };
 		82BADEC4234773D70070DB85 /* DynamicProgramming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicProgramming.swift; sourceTree = "<group>"; };
+		82DF39F32492954900C621EC /* DFSClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFSClass.swift; sourceTree = "<group>"; };
+		82DF39F52492956A00C621EC /* MonotonicStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonotonicStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 				8233346023E7068F0050B80B /* AboutArray.swift */,
 				82A0BE8323F99E4900A56B6F /* DataStructureDesign.swift */,
 				82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */,
+				82DF39F32492954900C621EC /* DFSClass.swift */,
+				82DF39F52492956A00C621EC /* MonotonicStack.swift */,
 			);
 			path = LeetCodeComment;
 			sourceTree = "<group>";
@@ -140,8 +146,10 @@
 			files = (
 				8233346123E7068F0050B80B /* AboutArray.swift in Sources */,
 				8286280923419A16005CCF7E /* ABoutString.swift in Sources */,
+				82DF39F62492956A00C621EC /* MonotonicStack.swift in Sources */,
 				82B83EE92406D7B000C707F0 /* BinaryTreeBase.swift in Sources */,
 				82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */,
+				82DF39F42492954900C621EC /* DFSClass.swift in Sources */,
 				82A0BE8423F99E4900A56B6F /* DataStructureDesign.swift in Sources */,
 				828628022341797A005CCF7E /* main.swift in Sources */,
 				828CE5472354D1C5004E95AE /* GraphAlg.swift in Sources */,
