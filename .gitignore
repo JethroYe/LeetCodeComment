@@ -1,0 +1,8 @@
+#忽略的文件规则
+.idea
+*.xcuserstate
+.DS_Store
+*.hmap
+**/dgph
+**/xcuserdata
+**/*.LinkFileList
