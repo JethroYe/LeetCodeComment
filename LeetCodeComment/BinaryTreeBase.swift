@@ -508,4 +508,32 @@ class Solution2 {
             return root
         }
     }
+    
+    
+    //MARK: - 【求二叉搜索树中两个节点的最近公共父节点】
+    //https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+    
+    /**思路：主要是利用BST的左小右大的性质
+     * 请注意，不能使用【中序遍历】得到有序的数组之后再求解的办法，这样的话树的层级结构就丢了，不能找到最近的公共父节点
+     */
+    func lowestCommonAncestorForBST(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+        
+        guard let root = root else {
+            return nil
+        }
+        
+        let pValue = p!.val
+        let qValue = q!.val
+        
+        if root.val > max(pValue, qValue) {
+            //如果在大于最大的，在左边找
+            return lowestCommonAncestor(root.left, p, q)
+        } else if root.val < min(pValue, qValue){
+            //如果小于最小的，在右边找
+            return lowestCommonAncestor(root.right, p, q)
+        } else {
+            //在中间找
+            return root;
+        }
+    }
 }
