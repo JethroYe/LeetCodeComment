@@ -22,8 +22,11 @@ public class TreeNode {
 class Solution {
 
 }
-func main() {    
-    var s = Solution();
+func main() {
+    print("main start")
+    var s = Solution()
+    
+    print("main end")
 }
 
 

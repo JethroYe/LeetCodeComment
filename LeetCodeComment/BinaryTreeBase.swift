@@ -451,4 +451,39 @@ class Solution2 {
         return finalRes;
     }
     
+    
+    //MARK: - 判断二叉树是否是平衡的
+    //https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/
+    
+    /**思路：
+     * 题目中已经说明了思路，比较简单。从root节点开始判断左右子树的高度相差是否超过了1
+     * 如果超过了，那么直接返回true
+     * 否则就递归的左右节点进行判断
+     * 这种方式计算比较复杂，递归调用次数过多，尤其是求树深度的部分，递归次数过多。接下来看看题解有没有什么高效的办法
+     */
+    
+    func isBalanced(_ root: TreeNode?) -> Bool {
+        guard let realRoot = root else {
+            return true
+        }
+        
+        if (abs(maxDepth(realRoot.left) - maxDepth(realRoot.right)) <= 1){
+            //继续检查
+            return (isBalanced(realRoot.left) && isBalanced(realRoot.right))
+        }else{
+            //结束
+            return false;
+        }
+    }
+    
+    //deep
+    func maxDepth(_ root: TreeNode?) -> Int {
+        
+        guard let realRoot:TreeNode = root else {
+            return 0
+        }
+        let depth = max(maxDepth(realRoot.left), maxDepth(realRoot.right)) + 1
+        return depth;
+    }
+    
 }
