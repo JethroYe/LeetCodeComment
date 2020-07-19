@@ -475,15 +475,4 @@ class Solution2 {
             return false;
         }
     }
-    
-    //deep
-    func maxDepth(_ root: TreeNode?) -> Int {
-        
-        guard let realRoot:TreeNode = root else {
-            return 0
-        }
-        let depth = max(maxDepth(realRoot.left), maxDepth(realRoot.right)) + 1
-        return depth;
-    }
-    
 }
