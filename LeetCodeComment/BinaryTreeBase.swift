@@ -397,7 +397,7 @@ class Solution2 {
         return resArr
     }
 
-    //MARK: - 二叉树右视图
+    //MARK: - 【二叉树右视图】
     //https://leetcode-cn.com/problems/binary-tree-right-side-view/submissions/
     
     /// BFS 广度优先解法
@@ -452,7 +452,7 @@ class Solution2 {
     }
     
     
-    //MARK: - 判断二叉树是否是平衡的
+    //MARK: - 【判断二叉树是否是平衡的】
     //https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/
     
     /**思路：
@@ -473,6 +473,39 @@ class Solution2 {
         }else{
             //结束
             return false;
+        }
+    }
+    
+    //MARK: - 【求二叉树中两个节点的最近公共父节点】
+    //https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
+    
+    /**思路：
+     * 后续遍历递归
+     */
+    func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+        
+        if root == nil {
+            return root
+        }
+        
+        //认为没有重复value的节点吧
+        if (root!.val == p!.val) || (root!.val == q!.val) {
+            return root!
+        }
+        
+        let left = lowestCommonAncestor(root!.left, p, q);
+        let right = lowestCommonAncestor(root!.right, p, q);
+        
+        //执行到这里左右只有一个有值，如果都没有，就是root
+        if left == nil {
+            //左边没有，返回右边
+            return right
+        }else if right == nil {
+            //右边没有，返回左边
+            return left
+        }else{
+            //左右都没用，命中了！
+            return root
         }
     }
 }
