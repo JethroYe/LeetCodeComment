@@ -10,6 +10,29 @@ import Cocoa
 
 class AboutArray: NSObject {
     
+    //MARK: - 旋转数组的最小数字 https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/submissions/
+    func minArray(_ numbers: [Int]) -> Int {
+        let count = numbers.count
+        guard count != 0  else {
+            return 0
+        }
+        
+        var res = 0;
+        
+        var tmp:Int = numbers.first!
+        for idx in 1 ..< count {
+            if(numbers[idx] >= tmp) {
+                tmp = numbers[idx]
+            }else{
+                res = idx;
+                break;
+            }
+        }
+        return numbers[res];
+    }
+    
+    
+    
     //MARK: - 和可被 K 整除的子数组 https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/
     //1.同余数解决法
     func subarraysDivByK(_ A: [Int], _ K: Int) -> Int {
