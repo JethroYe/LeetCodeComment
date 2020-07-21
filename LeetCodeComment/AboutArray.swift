@@ -11,24 +11,43 @@ import Cocoa
 class AboutArray: NSObject {
     
     //MARK: - 旋转数组的最小数字 https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/submissions/
+    /**
+     *思路：有序数组，查找index，最先要想到的就是二分。我的第一个想法是遍历，时间复杂度是O(n)，但是二分可以做到O(logN)
+     *思路啊，思路
+     */
     func minArray(_ numbers: [Int]) -> Int {
-        let count = numbers.count
-        guard count != 0  else {
+        
+        var low = 0
+        var height = numbers.count - 1
+        
+        guard numbers.count != 0 else {
             return 0
         }
         
-        var res = 0;
-        
-        var tmp:Int = numbers.first!
-        for idx in 1 ..< count {
-            if(numbers[idx] >= tmp) {
-                tmp = numbers[idx]
+        //开始二分循环
+        while low < height {
+            
+            //向下取整
+            let pivot = floor(Double(low + (height - low)/2))
+            
+            if numbers[Int(pivot)] > numbers[height] {
+                
+                //表示游标pivot左边的部分没用了
+                low = Int(pivot + 1);
+                
+            }else if numbers[Int(pivot)] < numbers[height] {
+                
+                //表示游标右边的部分没用了
+                height = Int(pivot)
+                
             }else{
-                res = idx;
-                break;
+                
+                //由于游标和最后的height对比，所以就移动height
+                height = height - 1
+                
             }
         }
-        return numbers[res];
+        return numbers[low]
     }
     
     
