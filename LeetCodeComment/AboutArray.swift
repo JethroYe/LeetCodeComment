@@ -10,6 +10,77 @@ import Cocoa
 
 class AboutArray: NSObject {
     
+    //MARK: - 把数组排成最小的数 https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/
+    /**
+     * 核心思路：“自定义排序”
+     *  如果 (a + b)  < (b + a) 那么这个a就应该排b的前面
+     *  排序实现： 快排（顺路复习快排）
+     */
+    
+    struct ArrayToMiniNumer {
+        
+        /// 主实现函数
+        func minNumber(_ nums: [Int]) -> String {
+            
+            guard nums.count > 0 else {
+                return ""
+            }
+            
+            var strArr:Array<String> = Array()
+            
+            for idx in nums {
+                let str:String = String(idx)
+                strArr.append(str);
+            }
+            
+            //开始对这个str做自定义排序
+            quickForStr(strArr: &strArr, startIdx: 0, endIdx: strArr.count - 1)
+            
+            var res:String = String()
+            for str in strArr {
+                res.append(str)
+            }
+            return res;
+        }
+        
+        
+        //自定义快排,非递增
+        func quickForStr(strArr: inout Array<String>, startIdx:Int, endIdx:Int){
+            
+            if startIdx < endIdx
+            {
+                let p = partition(strArr: &strArr, startIdx: startIdx, endIdx: endIdx);
+                quickForStr(strArr: &strArr, startIdx: startIdx, endIdx: p - 1)
+                quickForStr(strArr: &strArr, startIdx: p + 1, endIdx: endIdx)
+            }
+            
+        }
+        
+        //partition
+        func partition(strArr: inout Array<String>, startIdx:Int, endIdx:Int) -> Int {
+            
+            let X:String = strArr[endIdx]
+            var I = startIdx - 1
+            for jndex in startIdx ... (endIdx - 1) {
+                
+                //自定义比大小
+                let XInt:Int = Int(X + strArr[jndex])!
+                let JInt = Int(strArr[jndex] + X)!
+                
+                if (JInt <= XInt) {
+                    I = I + 1
+                    strArr.swapAt(jndex, I)
+                }
+            }
+            I = I + 1
+            strArr.swapAt(endIdx, I)
+            return I
+        }
+        
+    }
+    
+    
+    
     //MARK: - 旋转数组的最小数字 https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/submissions/
     /**
      *思路：有序数组，查找index，最先要想到的就是二分。我的第一个想法是遍历，时间复杂度是O(n)，但是二分可以做到O(logN)
