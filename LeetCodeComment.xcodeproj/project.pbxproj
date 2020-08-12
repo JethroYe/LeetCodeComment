@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6976076724E45089002171F4 /* DFSAndPruing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6976076624E45089002171F4 /* DFSAndPruing.swift */; };
 		8233346123E7068F0050B80B /* AboutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8233346023E7068F0050B80B /* AboutArray.swift */; };
 		828628022341797A005CCF7E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828628012341797A005CCF7E /* main.swift */; };
 		8286280923419A16005CCF7E /* ABoutString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286280823419A16005CCF7E /* ABoutString.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6976076624E45089002171F4 /* DFSAndPruing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFSAndPruing.swift; sourceTree = "<group>"; };
 		8233346023E7068F0050B80B /* AboutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutArray.swift; sourceTree = "<group>"; };
 		828627FE2341797A005CCF7E /* LeetCodeComment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCodeComment; sourceTree = BUILT_PRODUCTS_DIR; };
 		828628012341797A005CCF7E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				82B83EE82406D7B000C707F0 /* BinaryTreeBase.swift */,
 				82DF39F32492954900C621EC /* DFSClass.swift */,
 				82DF39F52492956A00C621EC /* MonotonicStack.swift */,
+				6976076624E45089002171F4 /* DFSAndPruing.swift */,
 			);
 			path = LeetCodeComment;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				8233346123E7068F0050B80B /* AboutArray.swift in Sources */,
 				8286280923419A16005CCF7E /* ABoutString.swift in Sources */,
 				82DF39F62492956A00C621EC /* MonotonicStack.swift in Sources */,
+				6976076724E45089002171F4 /* DFSAndPruing.swift in Sources */,
 				82B83EE92406D7B000C707F0 /* BinaryTreeBase.swift in Sources */,
 				82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */,
 				82DF39F42492954900C621EC /* DFSClass.swift in Sources */,
