@@ -8,6 +8,55 @@
 
 import Foundation
 
+
+//MARK: - 图像渲染 https://leetcode-cn.com/problems/flood-fill/
+/**
+ *1. 简单DFS，AC
+ */
+class SolutionForFloodFill {
+    
+    func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -> [[Int]] {
+        
+        guard image.count > 0 && sr < image.count else {
+            return image
+        }
+        
+        guard image.first!.count > 0 && sc < image.first!.count else {
+            return image
+        }
+        
+        var imageForChange = image
+        let originColor = image[sr][sc]
+        
+        if originColor != newColor {
+            DFSFill(&imageForChange, sr, sc, newColor, originColor)
+        }
+        return imageForChange
+    }
+    
+    
+    
+    func DFSFill(_ image: inout [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int, _ originColor: Int){
+        
+        //出口条件
+        if (sr >= image.count) || (sc >= image.first!.count) || (sr < 0) || (sc < 0)  {
+            return
+        }
+        
+        if image[sr][sc] == originColor
+        {
+            image[sr][sc] = newColor
+            
+            DFSFill(&image, sr + 1, sc, newColor, originColor)
+            DFSFill(&image, sr - 1, sc, newColor, originColor)
+            DFSFill(&image, sr, sc + 1, newColor, originColor)
+            DFSFill(&image, sr, sc - 1, newColor, originColor)
+        }
+        
+        return;
+    }
+}
+
 //MARK: - 矩形围绕区域的问题 https://leetcode-cn.com/problems/surrounded-regions/
 /**
  *1. 关键思路在于反向思考，如果不能标记出“内部的O”，就要标记处“跟边界联通的O”，这样DFS算法写起来比较简单
