@@ -476,6 +476,36 @@ class Solution2 {
         }
     }
     
+    //MARK: - 【判断二叉树是否是平衡的】O(n)解法
+    func isBalanced2(_ root: TreeNode?) -> Bool {
+        
+        guard let root = root else {
+            return true
+        }
+        
+        return self.heightOfIsBalance2(root) > 0
+        
+    }
+    
+    func heightOfIsBalance2(_ node:TreeNode?) -> Int {
+        
+        //命中了叶子节点
+        guard let node:TreeNode = node else {
+            return 0
+        }
+        
+        let leftHeight = heightOfIsBalance2(node.left)
+        let rightHeight = heightOfIsBalance2(node.right);
+        
+        if leftHeight == -1 || rightHeight == -1 || abs(leftHeight - rightHeight) > 1 {
+            return -1
+        }else{
+            return max(leftHeight, rightHeight) + 1
+        }
+        
+    }
+    
+    
     //MARK: - 【求二叉树中两个节点的最近公共父节点】
     //https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
     
