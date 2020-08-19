@@ -15,6 +15,41 @@ class ABoutString: NSObject {
 
 class Solution_HuiWenChuan {
     
+    
+    // MARK: - https://leetcode-cn.com/problems/palindromic-substrings/
+    // 回文串计数，TLE了很可惜，学会两件事：
+    // 1. 双指针验证回文串
+    // 2. 数学法+双指针 求计数
+    // TODO: 马拉车没有学会
+    
+    func countSubstrings(_ s: String) -> Int {
+        
+        let count = s.count
+        
+        guard count > 0 else {
+            return 0
+        }
+        
+        var resCount:Int = 0;
+        
+        for idx in 0..<(2*count - 1) {
+            var left:Int = idx/2 //左指针
+            var right:Int = left+(idx%2) //右指针
+            
+            
+            while (left >= 0) && (right < count) && (s[s.index(s.startIndex, offsetBy: left)] ==  s[s.index(s.startIndex, offsetBy: right)]) {
+                
+                //扩展
+                left = left - 1
+                right = right + 1
+                
+                resCount = resCount + 1
+            }
+        }
+        
+        return resCount
+    }
+    
     //MARK: - 验证回文串
     /*
      日了狗这个题目在LeetCode上说我超时了，我怀疑是Swift操作字符串的函数耗时比较长，如果用C++来移动指针的话可能会快过remove字符串中的字符
