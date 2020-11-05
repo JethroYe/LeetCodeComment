@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// 二叉树节点
 public class TreeNode {
       public var val: Int
       public var left: TreeNode?
@@ -16,8 +17,19 @@ public class TreeNode {
           self.val = val
           self.left = nil
           self.right = nil
-      }
-  }
+    }
+}
+
+
+/// N叉树节点
+public class Node {
+    public var val: Int
+    public var children: [Node]
+    public init(_ val: Int) {
+        self.val = val
+        self.children = []
+    }
+}
 
 class Solution {
 
