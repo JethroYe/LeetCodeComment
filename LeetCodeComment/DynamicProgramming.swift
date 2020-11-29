@@ -426,3 +426,57 @@ class DynamicProgramming: NSObject {
     }
 
 }
+
+//MARK: - 0和1
+/// 花式DP -- 0和1，双重DP，0，1完全背包，简单题，应该自己想思路的
+/// https://leetcode-cn.com/problems/ones-and-zeroes/
+class findMaxFormSolution {
+    
+    func findMaxForm(_ strs: [String], _ m: Int, _ n: Int) -> Int {
+        
+        if (m ==  0 && n == 0) || (strs.count == 0) {
+            return 0
+        }
+        
+        //dp Array
+        var dp:Array<Array<Int>> = Array()
+        //init Array
+        for _ in 0 ... m {
+            let tmpArr = Array<Int>(repeating: 0, count: n + 1)
+            dp.append(tmpArr)
+        }
+        
+        // 开始DP
+        for strItem in strs {
+            let count:Array<Int> = self.countOneOrZero(str: strItem)
+            
+            var zeros:Int = m
+            while zeros >= count[0] {
+                var ones:Int = n
+                while ones >= count[1] {
+                    dp[zeros][ones] = max(dp[zeros][ones], 1+dp[zeros - count[0]][ones - count[1]])
+                    ones = ones - 1
+                }
+                zeros = zeros - 1
+            }
+        }
+        return dp.last!.last!
+    }
+    
+    /// 计算数组中有多少个0，多少个1
+    /// - Returns: 返回一个数组，第0个存放0的个数，第1个存放1的个数，这个计数和返回的方法很聪明。后续遇到类似的计数类函数，可以直接返回一个数组
+    func countOneOrZero(str:String) -> [Int] {
+        
+        var zeroCount:Int = 0;
+        var oneCount:Int = 0;
+        
+        for subStr in str {
+            if subStr == "0" {
+                zeroCount = zeroCount + 1
+            }else{
+                oneCount = oneCount + 1
+            }
+        }
+        return[zeroCount,oneCount];
+    }
+}

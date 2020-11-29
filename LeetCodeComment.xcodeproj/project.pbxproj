@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6976076724E45089002171F4 /* DFSAndPruing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6976076624E45089002171F4 /* DFSAndPruing.swift */; };
-		698EEA842552CA5600985F2E /* SortLearn.m in Sources */ = {isa = PBXBuildFile; fileRef = 698EEA7D2552CA5600985F2E /* SortLearn.m */; };
-		698EEA852552CA5600985F2E /* BinaryTreeDeepth.c in Sources */ = {isa = PBXBuildFile; fileRef = 698EEA7E2552CA5600985F2E /* BinaryTreeDeepth.c */; };
-		698EEA862552CA5600985F2E /* BinaryTreeLowestCommonAncestor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 698EEA7F2552CA5600985F2E /* BinaryTreeLowestCommonAncestor.cpp */; };
-		698EEA872552CA5600985F2E /* BinaryTreeToDoubleList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 698EEA802552CA5600985F2E /* BinaryTreeToDoubleList.cpp */; };
-		698EEA882552CA5600985F2E /* DFS.c in Sources */ = {isa = PBXBuildFile; fileRef = 698EEA822552CA5600985F2E /* DFS.c */; };
-		698EEA892552CA5600985F2E /* Objc_msgSend.s in Sources */ = {isa = PBXBuildFile; fileRef = 698EEA832552CA5600985F2E /* Objc_msgSend.s */; };
 		8233346123E7068F0050B80B /* AboutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8233346023E7068F0050B80B /* AboutArray.swift */; };
 		828628022341797A005CCF7E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828628012341797A005CCF7E /* main.swift */; };
 		8286280923419A16005CCF7E /* ABoutString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286280823419A16005CCF7E /* ABoutString.swift */; };
@@ -175,20 +169,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				698EEA842552CA5600985F2E /* SortLearn.m in Sources */,
 				8233346123E7068F0050B80B /* AboutArray.swift in Sources */,
-				698EEA872552CA5600985F2E /* BinaryTreeToDoubleList.cpp in Sources */,
-				698EEA882552CA5600985F2E /* DFS.c in Sources */,
 				8286280923419A16005CCF7E /* ABoutString.swift in Sources */,
 				82DF39F62492956A00C621EC /* MonotonicStack.swift in Sources */,
 				6976076724E45089002171F4 /* DFSAndPruing.swift in Sources */,
 				82B83EE92406D7B000C707F0 /* BinaryTreeBase.swift in Sources */,
-				698EEA852552CA5600985F2E /* BinaryTreeDeepth.c in Sources */,
 				82BADEC5234773D70070DB85 /* DynamicProgramming.swift in Sources */,
-				698EEA862552CA5600985F2E /* BinaryTreeLowestCommonAncestor.cpp in Sources */,
 				82DF39F42492954900C621EC /* DFSClass.swift in Sources */,
 				82A0BE8423F99E4900A56B6F /* DataStructureDesign.swift in Sources */,
-				698EEA892552CA5600985F2E /* Objc_msgSend.s in Sources */,
 				828628022341797A005CCF7E /* main.swift in Sources */,
 				828CE5472354D1C5004E95AE /* GraphAlg.swift in Sources */,
 			);
