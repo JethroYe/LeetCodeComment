@@ -9,6 +9,46 @@
 
 import Cocoa
 
+//MARK: 最长递增子序列问题
+//https://leetcode-cn.com/problems/longest-increasing-subsequence
+//DP转移方程的设计思路值得注意，非常朴素的思路，但是很有效
+//当注意到“子序列”，“最长”，"递增/递减" 这类关键字的时候，需要想一下DP
+//TODO: 这题和预测天气的单调栈有点像，可以单调栈吗？
+class LengthOfLIS {
+    func lengthOfLIS(_ nums: [Int]) -> Int {
+        
+        guard nums.count != 0 else {
+            return 0
+        }
+        
+        //DP 初始化
+        var DP:Array<Int> = Array()
+        for _ in 0..<nums.count {
+            DP.append(1)
+        }
+        
+        var res = 1
+        //开始DP
+        for idx in 1..<nums.count {
+            DP[idx] = 1
+            var jdx:Int = 0
+            while (jdx < idx) {
+                
+                if nums[jdx] <= nums[idx] {
+                    // Do Nothing
+                }else{
+                    DP[idx] = max(DP[idx], DP[jdx] + 1)
+                }
+                
+                jdx = jdx + 1
+            }
+            res = max(res, DP[idx])
+        }
+        
+        return res
+    }
+}
+
 class DynamicProgramming: NSObject {
     
     //MARK: 面试题，硬币
