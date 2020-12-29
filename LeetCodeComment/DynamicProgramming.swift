@@ -34,8 +34,8 @@ class LengthOfLIS {
             var jdx:Int = 0
             while (jdx < idx) {
                 
-                if nums[jdx] <= nums[idx] {
-                    // Do Nothing
+                if nums[idx] <= nums[jdx] {
+                    //Do nothing
                 }else{
                     DP[idx] = max(DP[idx], DP[jdx] + 1)
                 }
