@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6976076724E45089002171F4 /* DFSAndPruing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6976076624E45089002171F4 /* DFSAndPruing.swift */; };
+		69949502259E123800396BDE /* GreedyMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69949501259E123800396BDE /* GreedyMethod.swift */; };
 		8233346123E7068F0050B80B /* AboutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8233346023E7068F0050B80B /* AboutArray.swift */; };
 		828628022341797A005CCF7E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828628012341797A005CCF7E /* main.swift */; };
 		8286280923419A16005CCF7E /* ABoutString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286280823419A16005CCF7E /* ABoutString.swift */; };
@@ -40,6 +41,7 @@
 		698EEA812552CA5600985F2E /* SortLearn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortLearn.h; sourceTree = "<group>"; };
 		698EEA822552CA5600985F2E /* DFS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DFS.c; sourceTree = "<group>"; };
 		698EEA832552CA5600985F2E /* Objc_msgSend.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = Objc_msgSend.s; sourceTree = "<group>"; };
+		69949501259E123800396BDE /* GreedyMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreedyMethod.swift; sourceTree = "<group>"; };
 		8233346023E7068F0050B80B /* AboutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutArray.swift; sourceTree = "<group>"; };
 		828627FE2341797A005CCF7E /* LeetCodeComment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCodeComment; sourceTree = BUILT_PRODUCTS_DIR; };
 		828628012341797A005CCF7E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				82DF39F32492954900C621EC /* DFSClass.swift */,
 				82DF39F52492956A00C621EC /* MonotonicStack.swift */,
 				6976076624E45089002171F4 /* DFSAndPruing.swift */,
+				69949501259E123800396BDE /* GreedyMethod.swift */,
 			);
 			path = LeetCodeComment;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69949502259E123800396BDE /* GreedyMethod.swift in Sources */,
 				8233346123E7068F0050B80B /* AboutArray.swift in Sources */,
 				8286280923419A16005CCF7E /* ABoutString.swift in Sources */,
 				82DF39F62492956A00C621EC /* MonotonicStack.swift in Sources */,
